@@ -1,107 +1,158 @@
-'use client';
+'use client'
 
-import { Cloud, ShieldCheck, BarChart2, CheckSquare, Layout, NetworkIcon } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { Cloud, ShieldCheck, BarChart2, CheckSquare, Layout, NetworkIcon } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { motion } from 'framer-motion'
 
 const services = [
-    {
-        icon: <ShieldCheck size={36} className="text-accent" />,
-        title: 'Cybersecurity',
-        description: 'Robust protection strategies and AI-driven threat detection to safeguard your digital assets.',
-    },
-    {
-        icon: <Cloud size={36} className="text-accent" />,
-        title: 'Cloud Engineering',
-        description: 'Design, deployment, and management of scalable cloud infrastructure tailored to your needs.',
-    },
-    {
-        icon: <BarChart2 size={36} className="text-accent" />,
-        title: 'Data Analytics',
-        description: 'Transform raw data into actionable insights with advanced analytics and visualization tools.',
-    },
-    {
-        icon: <CheckSquare size={36} className="text-accent" />,
-        title: 'Software Testing',
-        description: 'Comprehensive testing services ensuring quality, reliability, and performance of your applications.',
-    },
-    {
-        icon: <Layout size={36} className="text-accent" />,
-        title: 'Application Engineering',
-        description: 'End-to-end application design, development, and maintenance for seamless user experiences.',
-    },
-    {
-        icon: <NetworkIcon size={36} className="text-accent" />,
-        title: 'IoT',
-        description: 'Smart device integration, real-time data analytics, automation, and secure connectivity to drive intelligent business transformation.',
-    },
-];
-
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.2,
-    },
+  {
+    icon: ShieldCheck,
+    title: 'Cybersecurity',
+    description:
+      'Enterprise-grade security architecture, AI-driven threat detection, and risk management to protect critical digital assets and ensure regulatory compliance.',
   },
-};
+  {
+    icon: Cloud,
+    title: 'Cloud Engineering',
+    description:
+      'Design, migration, and modernization of secure, scalable cloud platforms to enable agility, resilience, and cost optimization.',
+  },
+  {
+    icon: BarChart2,
+    title: 'Data & Analytics',
+    description:
+      'Advanced analytics, data platforms, and business intelligence to transform data into actionable insights and predictive decision-making.',
+  },
+  {
+    icon: CheckSquare,
+    title: 'Quality Engineering',
+    description:
+      'Enterprise testing and quality assurance frameworks to ensure reliability, performance, and scalability across mission-critical applications.',
+  },
+  {
+    icon: Layout,
+    title: 'Application Engineering',
+    description:
+      'Modern application design, development, and lifecycle management to deliver secure, scalable, and high-performing digital solutions.',
+  },
+  {
+    icon: NetworkIcon,
+    title: 'IoT & Intelligent Systems',
+    description:
+      'Connected device platforms, real-time data processing, and secure integration to enable intelligent operations and industrial automation.',
+  },
+]
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.6,
-      ease: 'easeOut',
-    },
+    transition: { duration: 0.6, ease: 'easeOut' },
   },
-};
+}
 
 export default function ServicesPage() {
-    const router = useRouter();
+  const router = useRouter()
 
-    const handleClick = () => {
-        router.push('/solutions'); // navigate programmatically
-    };
+  return (
+    <main id='services' className="bg-white text-gray-900">
+      {/* HERO (MATCHES TRANSFORMATION PAGE) */}
+      <section className="relative overflow-hidden border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 py-28 text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-5xl md:text-6xl font-semibold tracking-tight"
+          >
+            Enterprise Technology Solutions
+          </motion.h1>
 
-    return (
-        <section id="services" className="min-h-screen bg-white py-20 text-primary">
-            <div className="max-w-7xl mx-auto px-4 text-center">
-                <h1 className="text-5xl text-[#D4AF37] font-bold mb-6">Our Solutions</h1>
-                <p className="text-gray-600 max-w-3xl mx-auto mb-16">
-                    At Getabyte, we offer specialized technology services designed to accelerate your business and secure your future.
-                </p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mt-6 max-w-4xl mx-auto text-xl text-gray-600 leading-relaxed"
+          >
+            Getabyte delivers enterprise-grade technology capabilities designed to
+            modernize platforms, strengthen security, and enable data-driven
+            transformation at scale.
+          </motion.p>
 
-                <motion.div
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-5xl mx-auto"
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                >
-                    {services.map(({ icon, title, description }) => (
-                        <motion.div
-                            key={title}
-                            className="bg-gray-50 rounded-2xl text-[#D4AF37] shadow-md p-8 hover:shadow-xl transition"
-                            variants={cardVariants}
-                        >
-                            <div className="mb-5">{icon}</div>
-                            <h2 className="text-2xl font-semibold mb-3">{title}</h2>
-                            <p className="text-gray-700">{description}</p>
-                        </motion.div>
-                    ))}
-                </motion.div>
+          <div className="mt-10 h-1 w-28 bg-[#D4AF37] mx-auto rounded-full" />
+        </div>
+      </section>
 
-                <section className="bg-primary text-white text-center py-16 px-4 mt-20">
-                    <a
-                        onClick={handleClick}
-                        className="inline-block bg-[#002366] text-primary px-6 py-3 rounded-xl font-semibold shadow-lg transition cursor-pointer"
-                    >
-                        Explore more
-                    </a>
-                </section>
-            </div>
-        </section>
-    );
+      {/* SERVICES GRID (ENTERPRISE STYLE) */}
+      <section className="max-w-7xl mx-auto px-6 py-24">
+        <div className="grid md:grid-cols-3 gap-10">
+          {services.map(({ icon: Icon, title, description }) => (
+            <motion.div
+              key={title}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="
+                bg-white border border-gray-200 rounded-xl p-8
+                hover:shadow-xl hover:border-gray-300
+                transition-all duration-300
+              "
+            >
+              <div className="mb-5">
+                <Icon className="text-[#D4AF37]" size={32} />
+              </div>
+
+              <h2 className="text-xl font-semibold mb-4 text-gray-900">
+                {title}
+              </h2>
+
+              <p className="text-gray-600 leading-relaxed">
+                {description}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ENTERPRISE VALUE STATEMENT */}
+      <section className="bg-gray-50 py-24">
+        <div className="max-w-5xl mx-auto px-6 text-center">
+          <h2 className="text-3xl font-semibold tracking-tight">
+            Built for Enterprise Scale, Security & Performance
+          </h2>
+          <p className="mt-6 text-lg text-gray-600 leading-relaxed">
+            Our solutions are designed with enterprise architecture, governance,
+            and security at their core — enabling organizations to modernize
+            confidently while maintaining operational resilience and regulatory
+            compliance.
+          </p>
+        </div>
+      </section>
+
+      {/* EXECUTIVE CTA (MATCHES TRANSFORMATION PAGE) */}
+      <section className="bg-[#0B1220] text-white py-24">
+        <div className="max-w-5xl mx-auto px-6 text-center">
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
+            Partner with Getabyte to Modernize with Confidence
+          </h2>
+
+          <p className="mt-6 text-lg text-gray-300 leading-relaxed">
+            Engage our experts to define and execute a secure, scalable
+            technology roadmap aligned to your business strategy.
+          </p>
+
+          <div className="mt-10">
+            <button
+              onClick={() => router.push('/solutions')}
+              className="inline-block bg-[#D4AF37] text-black font-semibold px-8 py-4 rounded-md hover:bg-[#c9a633] transition"
+            >
+              Explore Our Solutions
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+  )
 }

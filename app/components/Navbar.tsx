@@ -1,8 +1,18 @@
 'use client'
+
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import Image from 'next/image'
+import { motion, AnimatePresence, color } from 'framer-motion'
+
+const navLinks = [
+  { name: 'Transformation', href: '/#transformation' },
+  { name: 'Careers', href: '/#careersinsights' },
+  { name: 'Services', href: '/#services' },
+  { name: 'Partners', href: '/#partners' },
+  { name: 'Contact', href: '/#contact' },
+]
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -10,8 +20,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const heroHeight = document.getElementById('hero')?.offsetHeight || 300
-      setScrolled(window.scrollY > heroHeight - 50)
+      setScrolled(window.scrollY > 20)
     }
 
     window.addEventListener('scroll', handleScroll)
@@ -20,43 +29,74 @@ const Navbar = () => {
 
   return (
     <motion.header
-      initial={{ boxShadow: '0 0 0 rgba(0,0,0,0)' }}
-      animate={{ boxShadow: scrolled ? '0 4px 20px rgba(0,0,0,0.25)' : '0 0 0 rgba(0,0,0,0)' }}
-      transition={{ duration: 0.3 }}
-      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-[#002366] text-white' : 'bg-primary text-white'
+      initial={{ y: -80 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+      className={`fixed w-full top-0 z-50 bg-white transition-all duration-500 ${
+        scrolled ? 'shadow-md border-b border-gray-200' : ''
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-        <Link href="/" className="text-2xl font-bold text-accent">
-          Getabyte
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+        {/* Logo */}
+        <Link href="/" className="flex items-center font-bold" style={{color: '#0A1D56'}}>
+          <Image
+            src="/images/GetabyteLogo.png"
+            alt="Getabyte Tech"
+            width={250}
+            height={40}
+            priority
+            className="object-contain"
+          />
+
         </Link>
 
-        <nav className="hidden md:flex space-x-6 font-medium">
-        <Link href="/#industries" className="hover:text-accent transition">Industries</Link>
-        <Link href="/#careersinsights" className="hover:text-accent transition">Careers</Link>
-          <Link href="/#services" className="hover:text-accent transition">Services</Link>
-          <Link href="/#partners" className="hover:text-accent transition">Partners</Link>
-          <Link href="/#contact" className="hover:text-accent transition">Contact</Link>
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-10 text-sm font-medium">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              className="relative text-gray-800 hover:text-blue-900 transition-colors duration-300 group"
+            >
+              {link.name}
+              <span className="absolute left-0 -bottom-2 h-[2px] w-0 bg-blue-900 transition-all duration-300 group-hover:w-full" />
+            </Link>
+          ))}
         </nav>
 
+        {/* Mobile Toggle */}
         <button
-          className="md:hidden text-white"
+          className="md:hidden text-gray-900"
           onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          {isOpen ? <X size={26} /> : <Menu size={26} />}
         </button>
       </div>
 
-      {isOpen && (
-        <div className="md:hidden bg-primary px-4 pb-4 space-y-2">
-          <Link href="/#industries" onClick={() => setIsOpen(false)} className="block">Industries</Link>
-          <Link href="/#careersinsights" onClick={() => setIsOpen(false)} className="block">Services</Link>
-          <Link href="/#services" onClick={() => setIsOpen(false)} className="block">Services</Link>
-          <Link href="/#partners" onClick={() => setIsOpen(false)} className="block">Partners</Link>
-          <Link href="/#contact" onClick={() => setIsOpen(false)} className="block">Contact</Link>
-        </div>
-      )}
+      {/* Mobile Drawer */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden bg-white border-t border-gray-200 px-6 py-8 space-y-6"
+          >
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className="block text-lg font-medium text-gray-800 hover:text-blue-900 transition"
+              >
+                {link.name}
+              </Link>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   )
 }

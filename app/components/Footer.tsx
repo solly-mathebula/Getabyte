@@ -1,20 +1,11 @@
 'use client'
 
-import { useState } from 'react'
 import Link from 'next/link'
 
 const Footer = () => {
-  const [email, setEmail] = useState('')
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    alert(`Subscribed with: ${email}`)
-    setEmail('')
-  }
-
   return (
     <footer className="bg-[#002366] text-white w-full" role="contentinfo">
-      <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 sm:grid-cols-3 gap-8">
+      <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {/* About */}
         <div>
           <h3 className="text-lg font-semibold mb-4">About Getabyte</h3>
@@ -30,27 +21,22 @@ const Footer = () => {
           <Link href="/#contact" className="hover:text-yellow-400 transition-colors">Contact Us</Link>
         </nav>
 
-        {/* Newsletter Signup */}
+        {/* Quick Links / Additional Info */}
         <div>
-          <h3 className="text-lg font-semibold mb-4">Newsletter Signup</h3>
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row sm:space-x-2 space-y-2 sm:space-y-0">
-            <label htmlFor="email" className="sr-only">Email address</label>
-            <input
-              id="email"
-              type="email"
-              placeholder="Your email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              required
-              className="flex-grow px-4 py-2 rounded-md text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
-            />
-            <button
-              type="submit"
-              className="bg-[#D4AF37] hover:bg-[#e6c200] transition-colors text-black font-semibold px-5 py-2 rounded-md"
-            >
-              Subscribe
-            </button>
-          </form>
+          <h3 className="text-lg font-semibold mb-4">Connect</h3>
+          <ul className="text-gray-300 text-sm space-y-2">
+            <li>
+              <a href="mailto:info@getabyte.com" className="hover:text-yellow-400 transition-colors">
+                info@getabyte.com
+              </a>
+            </li>
+            <li>
+              <a href="tel:+27123456789" className="hover:text-yellow-400 transition-colors">
+                +27 63 472 2727
+              </a>
+            </li>
+            <li>Grayston Drive, Sandton, Johannesburg, South Africa</li>
+          </ul>
         </div>
       </div>
 

@@ -58,7 +58,7 @@ const schema = z.object({
 
 export default function CareersPage() {
   const [filters, setFilters] = useState({ department: '', location: '', type: '' })
-  const [selectedJob, setSelectedJob] = useState<Job | null>(null) // ✅ Typed
+  const [selectedJob, setSelectedJob] = useState<Job | null>(null)
   const [form, setForm] = useState<{ name: string; email: string; resumeFile: File | null }>({
     name: '',
     email: '',
@@ -105,24 +105,29 @@ export default function CareersPage() {
       <Toaster position="top-center" />
 
       <main className="bg-white text-gray-900 font-sans">
-        {/* Hero Section */}
-        <section className="relative bg-[#0F1B42] text-white py-24 px-6 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
+        {/* Hero Section with Image */}
+        <section className="relative h-[500px] sm:h-[600px] flex items-center justify-center text-center">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: 'url(/images/ai-insight.jpg)', // replace with your hero image
+            }}
+          />
+          <div className="absolute inset-0 bg-black/50" /> {/* overlay for readability */}
+          <motion.div
+            className="relative z-10 px-6 max-w-3xl text-white"
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="text-5xl font-extrabold mb-4"
+            transition={{ duration: 0.8 }}
           >
-            Build the Future with Getabyte
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-lg max-w-2xl mx-auto"
-          >
-            We’re looking for bold, curious, and driven individuals to join our mission to digitally transform industries.
-          </motion.p>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">
+              Build the Future with Getabyte
+            </h1>
+            <p className="text-lg sm:text-xl md:text-2xl leading-relaxed drop-shadow-md">
+              We’re looking for bold, curious, and driven individuals to join our mission to digitally
+              transform industries.
+            </p>
+          </motion.div>
         </section>
 
         {/* Filters */}

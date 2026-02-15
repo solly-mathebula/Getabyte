@@ -70,27 +70,24 @@ const containerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.15
-    }
-  }
+      staggerChildren: 0.15,
+    },
+  },
 }
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' }
-  }
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 }
 
 export default function Industries() {
   const router = useRouter()
 
   return (
-    <section id="industries" className="max-w-6xl mx-auto px-6 py-12">
+    <section id="industries" className="max-w-7xl mx-auto px-6 py-16 md:py-24">
+      {/* Section Heading */}
       <motion.h2
-        className="text-4xl font-bold text-center text-[#D4AF37] mb-12"
+        className="text-4xl md:text-5xl font-bold text-center text-[#D4AF37] mb-16"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -99,8 +96,9 @@ export default function Industries() {
         Industries Expertise
       </motion.h2>
 
+      {/* Industries Grid */}
       <motion.div
-        className="grid grid-cols-1 md:grid-cols-3 gap-8"
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -112,25 +110,19 @@ export default function Industries() {
           return (
             <motion.div
               key={name}
-              className="flex flex-col bg-white rounded-lg shadow-md p-6"
+              className="relative flex flex-col bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl transition cursor-pointer border border-gray-100 hover:border-[#D4AF37]"
               variants={cardVariants}
+              whileHover={{ y: -4 }}
+              onClick={() => router.push(link)}
             >
-              <div className="flex items-center mb-4">
-                {IconComponent ? (
-                  <IconComponent className="text-yellow-500 mr-3 text-3xl" />
-                ) : (
-                  <div className="w-8 h-8 mr-3 bg-gray-300 rounded-full" /> // fallback icon
-                )}
-                <h3 className="text-2xl font-semibold text-[#D4AF37]">{name}</h3>
+              <div className="flex items-center gap-3 mb-4">
+                {IconComponent && <IconComponent className="text-[#D4AF37]" size={24} />}
+                <h3 className="text-xl md:text-2xl font-semibold text-gray-900">{name}</h3>
               </div>
-              <p className="text-gray-700 flex-grow">{description}</p>
-              <button
-                onClick={() => router.push(link)}
-                className="mt-4 text-[#D4AF37] hover:text-yellow-400 font-semibold transition self-start"
-                aria-label={`Explore more about ${name}`}
-              >
+              <p className="text-gray-600 flex-grow">{description}</p>
+              <div className="mt-4 text-[#D4AF37] font-semibold hover:text-yellow-400 transition flex items-center gap-1">
                 Explore More →
-              </button>
+              </div>
             </motion.div>
           )
         })}
