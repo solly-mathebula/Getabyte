@@ -18,6 +18,7 @@ const Footer = () => {
         <nav aria-label="Footer Navigation" className="flex flex-col space-y-2 text-gray-300 text-sm">
           <Link href="/industries" className="hover:text-yellow-400 transition-colors">Industries Overview</Link>
           <Link href="/solutions" className="hover:text-yellow-400 transition-colors">Solutions Overview</Link>
+          <Link href="/articles" className="hover:text-yellow-400 transition-colors">Articles</Link>
           <Link href="/#contact" className="hover:text-yellow-400 transition-colors">Contact Us</Link>
         </nav>
 
@@ -26,8 +27,8 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-4">Connect</h3>
           <ul className="text-gray-300 text-sm space-y-2">
             <li>
-              <a href="mailto:info@getabyte.com" className="hover:text-yellow-400 transition-colors">
-                info@getabyte.com
+              <a href="mailto:inquiries@getabyte.co.za" className="hover:text-yellow-400 transition-colors">
+                inquiries@getabyte.co.za
               </a>
             </li>
             <li>
@@ -35,7 +36,7 @@ const Footer = () => {
                 +27 63 472 2727
               </a>
             </li>
-            <li>Grayston Drive, Sandton, Johannesburg, South Africa</li>
+            <li>128 Leslie Ave, Fourways, Sandton, 2191, South Africa</li>
           </ul>
         </div>
       </div>

@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Link from 'next/link'
 
 const slides = [
   {
@@ -14,6 +15,8 @@ const slides = [
     description:
       'Getabyte delivers enterprise-grade Cloud, Cybersecurity, AI and Digital Solutions that enable scalable transformation and long-term competitive advantage.',
     img: '/images/p1.jpg',
+    primaryCta: { label: 'Start a Conversation', href: '#contact' },
+    secondaryCta: { label: 'Explore Services', href: '#services' },
   },
   {
     title: (
@@ -25,6 +28,8 @@ const slides = [
     description:
       'Harness AI-driven automation, analytics and intelligent systems to accelerate innovation and unlock measurable business value.',
     img: '/images/p2.jpg',
+    primaryCta: { label: 'Start a Conversation', href: '#contact' },
+    secondaryCta: { label: 'Explore Services', href: '#services' },
   },
   {
     title: (
@@ -36,6 +41,21 @@ const slides = [
     description:
       'Protect your infrastructure, data and digital assets with proactive, zero-trust security strategies.',
     img: '/images/p3.jpg',
+    primaryCta: { label: 'Start a Conversation', href: '#contact' },
+    secondaryCta: { label: 'Explore Services', href: '#services' },
+  },
+  {
+    title: (
+      <>
+        Ideas That Turn Strategy Into{' '}
+        <span className="text-yellow-400">Outcomes</span>
+      </>
+    ),
+    description:
+      'Explore our latest articles on digital transformation, AI, and security — practical thinking for organisations ready to execute with confidence.',
+    img: '/images/p2.jpg',
+    primaryCta: { label: 'Read Our Articles', href: '/articles' },
+    secondaryCta: { label: 'Start a Conversation', href: '#contact' },
   },
 ]
 
@@ -96,21 +116,20 @@ const Hero = () => {
                 {slides[currentSlide].description}
               </p>
 
-              {/* CTA Buttons */}
               <div className="mt-10 flex flex-col sm:flex-row gap-5">
-                <a
-                  href="#contact"
-                  className="px-8 py-4 rounded-full bg-yellow-400 text-black font-semibold hover:bg-yellow-300 transition-all duration-300 shadow-lg hover:shadow-xl"
+                <Link
+                  href={slides[currentSlide].primaryCta.href}
+                  className="px-8 py-4 rounded-full bg-yellow-400 text-black font-semibold hover:bg-yellow-300 transition-all duration-300 shadow-lg hover:shadow-xl text-center"
                 >
-                  Start a Conversation
-                </a>
+                  {slides[currentSlide].primaryCta.label}
+                </Link>
 
-                <a
-                  href="#services"
-                  className="px-8 py-4 rounded-full border border-white/40 backdrop-blur-sm text-white hover:bg-white hover:text-black transition-all duration-300"
+                <Link
+                  href={slides[currentSlide].secondaryCta.href}
+                  className="px-8 py-4 rounded-full border border-white/40 backdrop-blur-sm text-white hover:bg-white hover:text-black transition-all duration-300 text-center"
                 >
-                  Explore Services
-                </a>
+                  {slides[currentSlide].secondaryCta.label}
+                </Link>
               </div>
             </motion.div>
           </AnimatePresence>

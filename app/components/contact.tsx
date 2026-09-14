@@ -73,7 +73,7 @@ export default function Contact() {
                 Headquarters
               </h3>
               <p className="text-sm">
-                90 Grayston Drive, Sandton, Johannesburg, 2169
+                128 Leslie Ave, Fourways, Sandton, 2191, South Africa
               </p>
             </div>
 
@@ -81,14 +81,14 @@ export default function Contact() {
               <h3 className="font-semibold text-blue-900">
                 Email
               </h3>
-              <p className="text-sm">info@getabytetech.com</p>
+              <p className="text-sm">inquiries@getabyte.co.za</p>
             </div>
 
             <div>
               <h3 className="font-semibold text-blue-900">
                 Phone
               </h3>
-              <p className="text-sm">+27 11 000 0000</p>
+              <p className="text-sm">+27 63 472 2727</p>
             </div>
           </div>
         </div>

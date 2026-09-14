@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { motion, AnimatePresence, color } from 'framer-motion'
 
 const navLinks = [
+  { name: 'Articles', href: '/articles' },
   { name: 'Transformation', href: '/#transformation' },
   { name: 'Careers', href: '/#careersinsights' },
   { name: 'Services', href: '/#services' },
